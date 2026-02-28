@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmark Question Reviewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>📚 Benchmark Question Reviewer</h1>
+                <p>Validate and review benchmark questions for accuracy and quality</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar with Statistics -->
+            <aside class="sidebar">
+                <div class="stats-card">
+                    <h3>📊 Statistics</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Questions:</span>
+                        <span class="stat-value" id="total-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">✅ Approved:</span>
+                        <span class="stat-value approved" id="approved-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">❌ Rejected:</span>
+                        <span class="stat-value rejected" id="rejected-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">⚠️ Contested:</span>
+                        <span class="stat-value contested" id="contested-count">0</span>
+                    </div>
+                </div>
+
+                <div class="filter-card">
+                    <h3>🔍 Filters</h3>
+                    <label>
+                        <input type="checkbox" id="filter-all" checked> All Questions
+                    </label>
+                    <label>
+                        <input type="checkbox" id="filter-approved"> Approved
+                    </label>
+                    <label>
+                        <input type="checkbox" id="filter-rejected"> Rejected
+                    </label>
+                    <label>
+                        <input type="checkbox" id="filter-pending"> Pending
+                    </label>
+                    <label>
+                        Category:
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <option value="math">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="history">History</option>
+                            <option value="language">Language</option>
+                            <option value="general">General Knowledge</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="action-card">
+                    <h3>⚙️ Actions</h3>
+                    <button class="btn btn-primary" id="export-btn">📥 Export Valid Questions</button>
+                    <button class="btn btn-secondary" id="clear-votes-btn">🔄 Clear All Votes</button>
+                </div>
+            </aside>
+
+            <!-- Question Viewer -->
+            <section class="question-section">
+                <!-- Question Card -->
+                <div class="question-card" id="question-card">
+                    <div class="question-header">
+                        <div class="author-info">
+                            <strong id="question-author">Loading...</strong>
+                            <span class="category-tag" id="question-category">General</span>
+                        </div>
+                        <div class="question-status" id="question-status">Pending</div>
+                    </div>
+
+                    <div class="question-text">
+                        <p id="question-content">Loading question...</p>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div class="options-container">
+                        <label class="option" data-option="A">
+                            <input type="radio" name="answer" value="A">
+                            <span id="option-A">Option A</span>
+                        </label>
+                        <label class="option" data-option="B">
+                            <input type="radio" name="answer" value="B">
+                            <span id="option-B">Option B</span>
+                        </label>
+                        <label class="option" data-option="C">
+                            <input type="radio" name="answer" value="C">
+                            <span id="option-C">Option C</span>
+                        </label>
+                        <label class="option" data-option="D">
+                            <input type="radio" name="answer" value="D">
+                            <span id="option-D">Option D</span>
+                        </label>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="button-group">
+                        <button class="btn btn-reveal" id="reveal-btn">👁️ Show Answer</button>
+                    </div>
+
+                    <!-- Answer Display (Hidden initially) -->
+                    <div class="answer-section" id="answer-section" style="display: none;">
+                        <hr>
+                        <div class="correct-answer">
+                            <strong>✅ Correct Answer: <span id="correct-answer">A</span></strong>
+                        </div>
+                        <div class="explanation">
+                            <h4>📖 Explanation:</h4>
+                            <p id="explanation-text">Loading explanation...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voting/Review Section -->
+                <div class="voting-section">
+                    <h3>🗳️ Your Review</h3>
+                    <div class="vote-buttons">
+                        <button class="vote-btn thumbs-up" id="vote-up" title="This is a good question">
+                            👍 Approve
+                        </button>
+                        <button class="vote-btn thumbs-neutral" id="vote-neutral" title="This question needs discussion">
+                            ➖ Contested
+                        </button>
+                        <button class="vote-btn thumbs-down" id="vote-down" title="This is not a good question">
+                            👎 Reject
+                        </button>
+                    </div>
+
+                    <!-- Comment Section -->
+                    <div class="comment-section">
+                        <label for="comment-input">💬 Add a Comment:</label>
+                        <textarea id="comment-input" placeholder="e.g., 'Option B is also correct', 'Question too difficult'"></textarea>
+                        <button class="btn btn-small" id="submit-comment-btn">Post Comment</button>
+                    </div>
+
+                    <!-- Comments Display -->
+                    <div class="comments-display" id="comments-display">
+                        <h4>Recent Comments:</h4>
+                        <div id="comments-list" style="min-height: 100px;"></div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="navigation">
+                    <button class="btn btn-nav" id="prev-btn">← Previous</button>
+                    <span class="question-counter">
+                        Question <span id="current-question">1</span> of <span id="total-questions">0</span>
+                    </span>
+                    <button class="btn btn-nav" id="next-btn">Next →</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Login Section (Initially shown) -->
+        <div class="login-overlay" id="login-overlay">
+            <div class="login-box">
+                <h2>Welcome to Question Reviewer</h2>
+                <p>Start by entering your name or email:</p>
+                <input type="text" id="username-input" placeholder="Your name (e.g., John)">
+                <button class="btn btn-primary" id="login-btn" style="width: 100%;">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

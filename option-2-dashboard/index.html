@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prishtina Hackerspace Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>🏗️ Prishtina Hackerspace</h1>
+        <p>Live Dashboard</p>
+    </header>
+
+    <main class="dashboard">
+        <!-- Widget 1: Air Quality -->
+        <div class="widget" id="air-quality">
+            <h2>🌍 Air Quality</h2>
+            <div class="widget-content">
+                <div class="air-gauge">
+                    <div class="gauge-circle">
+                        <span class="gauge-value" id="aqi-value">--</span>
+                        <span class="gauge-label">AQI</span>
+                    </div>
+                </div>
+                <div class="air-info">
+                    <p id="air-status">Loading...</p>
+                    <p id="air-detail"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget 2: Weather -->
+        <div class="widget" id="weather">
+            <h2>⛅ Weather</h2>
+            <div class="widget-content">
+                <div class="weather-main">
+                    <span class="temp" id="temp">--°C</span>
+                    <span class="condition" id="condition">Loading...</span>
+                </div>
+                <div class="weather-details">
+                    <p>💧 Humidity: <span id="humidity">--</span>%</p>
+                    <p>💨 Wind: <span id="wind">--</span> m/s</p>
+                    <p>🌅 Sunrise: <span id="sunrise">--</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget 3: News Headlines -->
+        <div class="widget" id="news">
+            <h2>📰 Latest News</h2>
+            <div class="widget-content" id="news-feed">
+                <p>Loading news...</p>
+            </div>
+        </div>
+
+        <!-- Widget 4: FLOSSK Events -->
+        <div class="widget" id="events">
+            <h2>📅 Upcoming Events</h2>
+            <div class="widget-content" id="events-feed">
+                <p>Loading events...</p>
+            </div>
+        </div>
+
+        <!-- Widget 5: Clock & History -->
+        <div class="widget" id="clock">
+            <h2>🕐 Time & Today</h2>
+            <div class="widget-content">
+                <div class="clock-display">
+                    <span id="current-time">--:--:--</span>
+                </div>
+                <div class="date-info">
+                    <p id="current-date">Loading...</p>
+                    <p id="history-fact" style="margin-top: 1rem; font-style: italic; color: #666;">Loading today's history...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget 6: Status -->
+        <div class="widget" id="status">
+            <h2>✅ Hackerspace Status</h2>
+            <div class="widget-content">
+                <div class="status-indicator closed" id="status-indicator">
+                    <span id="status-text">CLOSED</span>
+                </div>
+                <p id="status-description">The hackerspace is closed.</p>
+                <p id="next-open" style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">Next opening: Tomorrow 6 PM</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Last updated: <span id="last-update">now</span></p>
+        <p>Prishtina Hackerspace - Building the future together</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
