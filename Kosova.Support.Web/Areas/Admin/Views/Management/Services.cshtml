@@ -1,0 +1,8 @@
+@model IEnumerable<Service>
+<h1>Manage services</h1>
+<table class="table"><thead><tr><th>Name</th><th>Category</th><th>Department</th><th>Fee</th></tr></thead><tbody>
+@foreach (var item in Model)
+{
+    <tr><td>@item.Name</td><td>@item.ServiceCategory?.Name</td><td>@item.Department?.Name</td><td>@item.FeeAmount</td></tr>
+}
+</tbody></table>

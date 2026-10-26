@@ -1,0 +1,9 @@
+@model IEnumerable<Department>
+<h1>Manage departments</h1>
+<form asp-action="AddDepartment" method="post" class="row g-2 mb-3">
+    @Html.AntiForgeryToken()
+    <div class="col-md-4"><input name="name" class="form-control" placeholder="Department name" required /></div>
+    <div class="col-md-6"><input name="description" class="form-control" placeholder="Description" required /></div>
+    <div class="col-md-2"><button class="btn btn-primary w-100">Add</button></div>
+</form>
+<ul class="list-group">@foreach (var item in Model){<li class="list-group-item">@item.Name - @item.Description</li>}</ul>

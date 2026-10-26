@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Home" xml:space="preserve"><value>Home</value></data>
+  <data name="Services" xml:space="preserve"><value>Services</value></data>
+  <data name="News" xml:space="preserve"><value>News</value></data>
+  <data name="Events" xml:space="preserve"><value>Events</value></data>
+  <data name="FAQ" xml:space="preserve"><value>FAQ</value></data>
+  <data name="Contact" xml:space="preserve"><value>Contact</value></data>
+  <data name="System Status" xml:space="preserve"><value>System Status</value></data>
+</root>

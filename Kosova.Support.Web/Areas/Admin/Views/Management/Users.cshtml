@@ -1,0 +1,3 @@
+@model IEnumerable<Kosova.Support.Infrastructure.Identity.ApplicationUser>
+<h1>Manage users and roles</h1>
+<table class="table"><thead><tr><th>Email</th><th>Name</th><th>Phone</th></tr></thead><tbody>@foreach (var item in Model){<tr><td>@item.Email</td><td>@item.FullName</td><td>@item.PhoneNumber</td></tr>}</tbody></table>

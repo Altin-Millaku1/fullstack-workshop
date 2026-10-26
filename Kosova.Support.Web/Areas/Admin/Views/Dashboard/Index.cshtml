@@ -1,0 +1,16 @@
+<h1>Admin dashboard</h1>
+<div class="row g-3 mb-4">
+    <div class="col-md-2"><div class="card"><div class="card-body"><strong>Users</strong><div>@ViewBag.Users</div></div></div></div>
+    <div class="col-md-2"><div class="card"><div class="card-body"><strong>Services</strong><div>@ViewBag.Services</div></div></div></div>
+    <div class="col-md-2"><div class="card"><div class="card-body"><strong>Applications</strong><div>@ViewBag.Applications</div></div></div></div>
+    <div class="col-md-2"><div class="card"><div class="card-body"><strong>Pending</strong><div>@ViewBag.PendingApplications</div></div></div></div>
+    <div class="col-md-2"><div class="card"><div class="card-body"><strong>Payments</strong><div>@ViewBag.Payments</div></div></div></div>
+    <div class="col-md-2"><div class="card"><div class="card-body"><strong>Tickets</strong><div>@ViewBag.Tickets</div></div></div></div>
+</div>
+<h2>Recent audit logs</h2>
+<table class="table"><thead><tr><th>Time</th><th>Action</th><th>Entity</th><th>User</th></tr></thead><tbody>
+@foreach (var log in ViewBag.Audit)
+{
+    <tr><td>@log.CreatedAtUtc.ToLocalTime().ToString("g")</td><td>@log.Action</td><td>@log.EntityName</td><td>@log.UserId</td></tr>
+}
+</tbody></table>

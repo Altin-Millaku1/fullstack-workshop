@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Home" xml:space="preserve"><value>Ballina</value></data>
+  <data name="Services" xml:space="preserve"><value>Shërbimet</value></data>
+  <data name="News" xml:space="preserve"><value>Lajme</value></data>
+  <data name="Events" xml:space="preserve"><value>Ngjarje</value></data>
+  <data name="FAQ" xml:space="preserve"><value>Pyetje të shpeshta</value></data>
+  <data name="Contact" xml:space="preserve"><value>Kontakt</value></data>
+  <data name="System Status" xml:space="preserve"><value>Gjendja e sistemit</value></data>
+</root>

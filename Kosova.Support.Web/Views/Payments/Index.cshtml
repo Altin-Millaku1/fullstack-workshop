@@ -1,0 +1,26 @@
+@model IEnumerable<Payment>
+@{
+    var pending = (IEnumerable<Kosova.Support.Core.Entities.Application>)ViewBag.PendingApplications;
+}
+<h1>Payments</h1>
+@if (pending.Any())
+{
+    <h2 class="h5">Pending payments</h2>
+    <div class="mb-3">
+        @foreach (var app in pending)
+        {
+            <form asp-action="Pay" method="post" class="d-flex justify-content-between border rounded p-2 mb-2">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="applicationId" value="@app.Id" />
+                <span>Application #@app.Id</span>
+                <button class="btn btn-sm btn-primary">Pay sandbox fee</button>
+            </form>
+        }
+    </div>
+}
+<table class="table"><thead><tr><th>Reference</th><th>Amount</th><th>Status</th><th>Date</th><th>Receipt</th></tr></thead><tbody>
+@foreach (var p in Model)
+{
+    <tr><td>@p.ExternalReference</td><td>@p.Amount @p.Currency</td><td>@p.Status</td><td>@p.CreatedAtUtc.ToLocalTime().ToString("g")</td><td><a asp-controller="Receipts" asp-action="Payment" asp-route-id="@p.Id">PDF</a></td></tr>
+}
+</tbody></table>

@@ -1,0 +1,15 @@
+@model DashboardViewModel
+<h1>User dashboard</h1>
+<div class="row g-3 mb-4">
+    <div class="col-md-3"><div class="card"><div class="card-body"><strong>Applications</strong><div>@Model.Applications.Count</div></div></div></div>
+    <div class="col-md-3"><div class="card"><div class="card-body"><strong>Appointments</strong><div>@Model.Appointments.Count</div></div></div></div>
+    <div class="col-md-3"><div class="card"><div class="card-body"><strong>Payments</strong><div>@Model.Payments.Count</div></div></div></div>
+    <div class="col-md-3"><div class="card"><div class="card-body"><strong>Notifications</strong><div>@Model.Notifications.Count</div></div></div></div>
+</div>
+<h2>Applications</h2>
+<table class="table"><thead><tr><th>Service</th><th>Status</th><th>Step</th><th></th></tr></thead><tbody>
+@foreach (var app in Model.Applications)
+{
+    <tr><td>@app.Service?.Name</td><td>@app.Status</td><td>@app.CurrentStep</td><td><a asp-controller="Applications" asp-action="EditStep" asp-route-id="@app.Id">Open</a> | <a asp-controller="Receipts" asp-action="Application" asp-route-id="@app.Id">PDF receipt</a></td></tr>
+}
+</tbody></table>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Home" xml:space="preserve"><value>Početna</value></data>
+  <data name="Services" xml:space="preserve"><value>Usluge</value></data>
+  <data name="News" xml:space="preserve"><value>Vesti</value></data>
+  <data name="Events" xml:space="preserve"><value>Događaji</value></data>
+  <data name="FAQ" xml:space="preserve"><value>Česta pitanja</value></data>
+  <data name="Contact" xml:space="preserve"><value>Kontakt</value></data>
+  <data name="System Status" xml:space="preserve"><value>Status sistema</value></data>
+</root>

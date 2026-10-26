@@ -1,0 +1,13 @@
+@model ContactFormViewModel
+<h1>Contact and support</h1>
+<form method="post" class="row g-3">
+    @Html.AntiForgeryToken()
+    <div class="col-md-6"><label asp-for="FullName" class="form-label"></label><input asp-for="FullName" class="form-control" /><span asp-validation-for="FullName" class="text-danger"></span></div>
+    <div class="col-md-6"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
+    <div class="col-12"><label asp-for="Subject" class="form-label"></label><input asp-for="Subject" class="form-control" /><span asp-validation-for="Subject" class="text-danger"></span></div>
+    <div class="col-12"><label asp-for="Message" class="form-label"></label><textarea asp-for="Message" class="form-control" rows="6"></textarea><span asp-validation-for="Message" class="text-danger"></span></div>
+    <div class="col-12"><button class="btn btn-primary">Submit ticket</button></div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

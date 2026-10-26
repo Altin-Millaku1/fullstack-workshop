@@ -1,0 +1,3 @@
+@model IEnumerable<Payment>
+<h1>Manage payments</h1>
+<table class="table"><thead><tr><th>Reference</th><th>Amount</th><th>Status</th></tr></thead><tbody>@foreach (var item in Model){<tr><td>@item.ExternalReference</td><td>@item.Amount</td><td>@item.Status</td></tr>}</tbody></table>

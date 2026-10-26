@@ -1,0 +1,3 @@
+@model IEnumerable<FAQ>
+<h1>Manage FAQs</h1>
+<ul class="list-group">@foreach (var item in Model){<li class="list-group-item">@item.Question</li>}</ul>

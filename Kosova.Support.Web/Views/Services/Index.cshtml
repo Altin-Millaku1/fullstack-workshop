@@ -1,0 +1,32 @@
+@model ServiceSearchViewModel
+@{
+    ViewData["Title"] = "Government services";
+}
+<h1>Government services</h1>
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-6"><input class="form-control" name="query" value="@Model.Query" placeholder="Search services" /></div>
+    <div class="col-md-4">
+        <select class="form-select" name="categoryId">
+            <option value="">All categories</option>
+            @foreach (var c in Model.Categories)
+            {
+                <option value="@c.Id" selected="@(Model.CategoryId == c.Id)">@c.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Filter</button></div>
+</form>
+<table class="table table-striped">
+    <thead><tr><th>Service</th><th>Category</th><th>Fee</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var s in Model.Results)
+    {
+        <tr>
+            <td>@s.Name</td>
+            <td>@s.ServiceCategory?.Name</td>
+            <td>@s.FeeAmount.ToString("0.00") EUR</td>
+            <td><a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-slug="@s.Slug">Details</a></td>
+        </tr>
+    }
+    </tbody>
+</table>

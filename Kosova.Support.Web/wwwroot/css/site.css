@@ -1,0 +1,41 @@
+:root {
+  --ks-primary: #12355b;
+  --ks-secondary: #2a7abd;
+  --ks-accent: #d6ad60;
+}
+
+html[data-theme='dark'] {
+  filter: invert(0.92) hue-rotate(180deg);
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.hero {
+  background: linear-gradient(120deg, var(--ks-primary), var(--ks-secondary));
+  color: #fff;
+}
+
+.skip-link {
+  position: absolute;
+  left: -1000px;
+  top: auto;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 1000;
+  background: #fff;
+  padding: .5rem;
+}
+
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--ks-accent);
+  outline-offset: 2px;
+}

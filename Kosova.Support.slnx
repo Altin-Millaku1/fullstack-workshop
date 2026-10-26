@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Kosova.Support.Core/Kosova.Support.Core.csproj" />
+  <Project Path="Kosova.Support.Infrastructure/Kosova.Support.Infrastructure.csproj" />
+  <Project Path="Kosova.Support.Web/Kosova.Support.Web.csproj" />
+</Solution>

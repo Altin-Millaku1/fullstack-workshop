@@ -1,0 +1,72 @@
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+@if (Model.Alert is not null)
+{
+    <div class="alert alert-warning" role="alert">
+        <strong>@Model.Alert.Title:</strong> @Model.Alert.Message
+    </div>
+}
+<section class="p-4 rounded hero mb-4">
+    <h1>Access Kosovo public services in one place</h1>
+    <p class="lead">Search services, apply online, upload documents, and track progress.</p>
+    <form asp-controller="Services" asp-action="Index" method="get" class="row g-2" role="search">
+        <div class="col-md-9">
+            <label class="visually-hidden" for="searchInput">Search services</label>
+            <input id="searchInput" class="form-control" name="query" placeholder="Search government services" />
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-warning w-100" type="submit">Search</button>
+        </div>
+    </form>
+</section>
+
+<section class="mb-4">
+    <h2>Popular services</h2>
+    <div class="row g-3">
+        @foreach (var service in Model.PopularServices)
+        {
+            <div class="col-md-4">
+                <article class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">@service.Name</h3>
+                        <p>@service.Summary</p>
+                        <a class="btn btn-outline-primary btn-sm" asp-controller="Services" asp-action="Details" asp-route-slug="@service.Slug">Open service</a>
+                    </div>
+                </article>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="mb-4">
+    <h2>Service categories</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-2">
+        @foreach (var category in Model.Categories)
+        {
+            <div class="col"><a class="btn btn-light w-100 text-start" asp-controller="Services" asp-action="Index" asp-route-categoryId="@category.Id">@category.Name</a></div>
+        }
+    </div>
+</section>
+
+<div class="row g-4">
+    <section class="col-lg-6">
+        <h2>News and announcements</h2>
+        <ul class="list-group">
+            @foreach (var item in Model.News)
+            {
+                <li class="list-group-item"><strong>@item.Title</strong><br />@item.Summary</li>
+            }
+        </ul>
+    </section>
+    <section class="col-lg-6">
+        <h2>Upcoming events</h2>
+        <ul class="list-group">
+            @foreach (var item in Model.Events)
+            {
+                <li class="list-group-item"><strong>@item.Title</strong><br />@item.StartsAtUtc.ToLocalTime().ToString("g") - @item.Location</li>
+            }
+        </ul>
+    </section>
+</div>

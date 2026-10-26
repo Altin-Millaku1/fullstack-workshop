@@ -1,0 +1,38 @@
+@model IEnumerable<Appointment>
+@{
+    var services = (IEnumerable<Service>)ViewBag.Services;
+}
+<h1>Appointments</h1>
+<form asp-action="Book" method="post" class="row g-2 mb-4">
+    @Html.AntiForgeryToken()
+    <div class="col-md-5">
+        <select class="form-select" name="serviceId" required>
+            @foreach (var service in services)
+            {
+                <option value="@service.Id">@service.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-5"><input class="form-control" type="datetime-local" name="scheduledAtUtc" required /></div>
+    <div class="col-md-2"><button class="btn btn-primary w-100">Book</button></div>
+</form>
+<table class="table"><thead><tr><th>Service</th><th>Time</th><th>Status</th><th></th></tr></thead><tbody>
+@foreach (var a in Model)
+{
+    <tr>
+        <td>@a.Service?.Name</td>
+        <td>@a.ScheduledAtUtc.ToLocalTime().ToString("g")</td>
+        <td>@a.Status</td>
+        <td>
+            @if (a.Status == Kosova.Support.Core.Enums.AppointmentStatus.Scheduled)
+            {
+                <form asp-action="Cancel" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@a.Id" />
+                    <button class="btn btn-sm btn-outline-danger">Cancel</button>
+                </form>
+            }
+        </td>
+    </tr>
+}
+</tbody></table>

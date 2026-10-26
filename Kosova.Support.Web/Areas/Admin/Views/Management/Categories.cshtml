@@ -1,0 +1,3 @@
+@model IEnumerable<ServiceCategory>
+<h1>Manage categories</h1>
+<ul class="list-group">@foreach (var item in Model){<li class="list-group-item">@item.Name</li>}</ul>

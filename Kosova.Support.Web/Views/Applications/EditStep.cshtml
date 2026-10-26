@@ -1,0 +1,36 @@
+@model ApplicationStepViewModel
+<h1>Application step @Model.StepNumber</h1>
+@if (ViewBag.ServiceName is string serviceName)
+{
+    <p><strong>Service:</strong> @serviceName</p>
+}
+<form asp-action="SaveStep" method="post" class="row g-3">
+    @Html.AntiForgeryToken()
+    <input asp-for="ApplicationId" type="hidden" />
+    <input asp-for="StepNumber" type="hidden" />
+    <div class="col-12">
+        <label asp-for="ApplicantStatement" class="form-label"></label>
+        <textarea asp-for="ApplicantStatement" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="ApplicantStatement" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="ContactEmail" class="form-label"></label>
+        <input asp-for="ContactEmail" class="form-control" />
+        <span asp-validation-for="ContactEmail" class="text-danger"></span>
+    </div>
+    <div class="col-12 d-flex gap-2">
+        <button class="btn btn-outline-primary" type="submit" name="actionType" value="save">Save draft</button>
+        <button class="btn btn-primary" type="submit" name="actionType" value="submit">Submit</button>
+    </div>
+</form>
+<hr />
+<form asp-action="UploadDocument" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="applicationId" value="@Model.ApplicationId" />
+    <label class="form-label" for="file">Upload document (PDF/JPG/PNG, max 5MB)</label>
+    <input class="form-control" id="file" name="file" type="file" accept=".pdf,.jpg,.jpeg,.png" required />
+    <button class="btn btn-secondary mt-2" type="submit">Upload</button>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

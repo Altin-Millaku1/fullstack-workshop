@@ -1,0 +1,3 @@
+@model IEnumerable<Translation>
+<h1>Manage translations</h1>
+<table class="table"><thead><tr><th>Culture</th><th>Key</th><th>Value</th></tr></thead><tbody>@foreach (var item in Model){<tr><td>@item.Culture</td><td>@item.ResourceKey</td><td>@item.ResourceValue</td></tr>}</tbody></table>

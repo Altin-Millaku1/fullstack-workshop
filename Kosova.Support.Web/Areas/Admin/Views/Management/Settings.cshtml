@@ -1,0 +1,3 @@
+@model IEnumerable<SystemSetting>
+<h1>System settings</h1>
+<table class="table"><thead><tr><th>Key</th><th>Value</th><th>Description</th></tr></thead><tbody>@foreach (var item in Model){<tr><td>@item.Key</td><td>@item.Value</td><td>@item.Description</td></tr>}</tbody></table>

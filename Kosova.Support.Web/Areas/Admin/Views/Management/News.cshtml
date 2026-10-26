@@ -1,0 +1,3 @@
+@model IEnumerable<NewsArticle>
+<h1>Manage news</h1>
+<ul class="list-group">@foreach (var item in Model){<li class="list-group-item">@item.Title</li>}</ul>
