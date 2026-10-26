@@ -1,0 +1,3 @@
+@model List<GovernmentApplication>
+<h1>Manage applications</h1>
+<table class="table table-striped"><thead><tr><th>Ref</th><th>User</th><th>Service</th><th>Status</th></tr></thead><tbody>@foreach(var a in Model){<tr><td>@a.ReferenceNumber</td><td>@a.User?.Email</td><td>@a.Service?.Title</td><td>@a.Status</td></tr>}</tbody></table>

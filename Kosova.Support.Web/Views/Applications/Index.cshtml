@@ -1,0 +1,24 @@
+@model List<GovernmentApplication>
+@{ ViewData["Title"] = "Applications"; }
+<h1>My applications</h1>
+<a class="btn btn-primary mb-3" asp-action="Create">New application</a>
+<table class="table table-striped">
+    <thead><tr><th>Reference</th><th>Service</th><th>Status</th><th>Submitted</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ReferenceNumber</td>
+            <td>@item.Service?.Title</td>
+            <td>@item.Status</td>
+            <td>@(item.SubmittedAt == default ? "-" : item.SubmittedAt.ToShortDateString())</td>
+            <td>
+                @if (item.Status == ApplicationStatus.Draft)
+                {
+                    <form method="post" asp-action="Submit" class="d-inline">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@item.Id" /><button class="btn btn-sm btn-success" type="submit">Submit</button></form>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

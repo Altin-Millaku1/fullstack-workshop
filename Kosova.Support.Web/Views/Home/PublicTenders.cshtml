@@ -1,0 +1,11 @@
+@model List<PublicTender>
+@{ ViewData["Title"] = "Public tenders"; }
+<h1>Public tenders and notices</h1>
+@foreach (var item in Model)
+{
+    <article class="card mb-3"><div class="card-body">
+        <h2 class="h5">@item.Title</h2>
+        <p>@item.Description</p>
+        <p>Deadline: @item.Deadline.ToShortDateString()</p>
+    </div></article>
+}

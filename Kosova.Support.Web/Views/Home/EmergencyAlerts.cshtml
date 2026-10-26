@@ -1,0 +1,11 @@
+@model List<EmergencyAlert>
+@{ ViewData["Title"] = "Emergency alerts"; }
+<h1>Emergency alerts</h1>
+@foreach (var alert in Model)
+{
+    <div class="alert @(alert.IsActive ? "alert-danger" : "alert-secondary")">
+        <h2 class="h5">@alert.Title</h2>
+        <p>@alert.Message</p>
+        <small>@alert.StartsAt.ToShortDateString() - @alert.EndsAt.ToShortDateString()</small>
+    </div>
+}

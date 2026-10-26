@@ -1,0 +1,13 @@
+@model List<Event>
+@{ ViewData["Title"] = "Events"; }
+<h1>Events</h1>
+<div class="row g-3">
+@foreach (var item in Model)
+{
+    <div class="col-md-6"><div class="card h-100"><div class="card-body">
+        <h2 class="h5">@item.Title</h2>
+        <p>@item.Description</p>
+        <p><strong>@item.EventDate.ToShortDateString()</strong> · @item.Location</p>
+    </div></div></div>
+}
+</div>

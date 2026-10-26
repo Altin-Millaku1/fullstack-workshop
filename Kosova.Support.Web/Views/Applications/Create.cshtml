@@ -1,0 +1,37 @@
+@model ApplicationCreateViewModel
+@{ ViewData["Title"] = "Create application"; var services = ViewBag.Services as List<Service> ?? []; }
+<h1>Online application</h1>
+<form method="post" class="card p-3">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label asp-for="ServiceId" class="form-label">Service</label>
+        <select asp-for="ServiceId" class="form-select">
+            <option value="">Select service</option>
+            @foreach (var s in services)
+            {
+                <option value="@s.Id">@s.Title (@s.Fee€)</option>
+            }
+        </select>
+        <span asp-validation-for="ServiceId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ApplicantName" class="form-label"></label>
+        <input asp-for="ApplicantName" class="form-control" />
+        <span asp-validation-for="ApplicantName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Purpose" class="form-label"></label>
+        <input asp-for="Purpose" class="form-control" />
+        <span asp-validation-for="Purpose" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AdditionalInformation" class="form-label"></label>
+        <textarea asp-for="AdditionalInformation" class="form-control"></textarea>
+    </div>
+    <div class="form-check mb-3">
+        <input class="form-check-input" asp-for="SaveAsDraft" />
+        <label class="form-check-label" asp-for="SaveAsDraft">Save as draft</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Continue</button>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

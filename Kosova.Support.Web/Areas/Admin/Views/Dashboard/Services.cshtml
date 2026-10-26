@@ -1,0 +1,3 @@
+@model List<Service>
+<h1>Manage services and categories</h1>
+<table class="table table-striped"><thead><tr><th>Service</th><th>Category</th><th>Department</th><th>Fee</th></tr></thead><tbody>@foreach(var s in Model){<tr><td>@s.Title</td><td>@s.ServiceCategory?.Name</td><td>@s.Department?.Name</td><td>@s.Fee</td></tr>}</tbody></table>

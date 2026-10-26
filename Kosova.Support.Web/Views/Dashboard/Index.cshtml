@@ -1,0 +1,15 @@
+@{ ViewData["Title"] = "User dashboard"; var applications = ViewBag.Applications as List<GovernmentApplication> ?? []; var notifications = ViewBag.Notifications as List<Notification> ?? []; var payments = ViewBag.Payments as List<Payment> ?? []; }
+<h1>User dashboard</h1>
+<div class="row g-3 mb-3">
+    <div class="col-md-4"><div class="card p-3"><strong>Applications</strong><span>@applications.Count</span></div></div>
+    <div class="col-md-4"><div class="card p-3"><strong>Notifications</strong><span>@notifications.Count</span></div></div>
+    <div class="col-md-4"><div class="card p-3"><strong>Payments</strong><span>@payments.Count</span></div></div>
+</div>
+<h2 class="h5">Recent notifications</h2>
+<ul class="list-group mb-3">
+@foreach (var n in notifications)
+{
+    <li class="list-group-item"><strong>@n.Title</strong><br />@n.Message</li>
+}
+</ul>
+<a class="btn btn-primary" asp-controller="Applications" asp-action="Index">Manage applications</a>

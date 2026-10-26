@@ -1,0 +1,3 @@
+@model List<EmergencyAlert>
+<h1>Manage emergency alerts</h1>
+<ul class="list-group">@foreach(var a in Model){<li class="list-group-item">@a.Title (@(a.IsActive?"Active":"Inactive"))</li>}</ul>

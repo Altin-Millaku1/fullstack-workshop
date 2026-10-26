@@ -1,0 +1,3 @@
+@model List<NewsArticle>
+<h1>Manage news</h1>
+<ul class="list-group">@foreach(var n in Model){<li class="list-group-item">@n.Title</li>}</ul>

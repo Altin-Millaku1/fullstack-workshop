@@ -1,0 +1,25 @@
+@model List<ApplicationDocument>
+@{ ViewData["Title"] = "Documents"; }
+<h1>Documents and certificates</h1>
+<p>Upload supporting files for your submitted applications.</p>
+<table class="table table-striped mb-4">
+    <thead><tr><th>File</th><th>Application</th><th>Status</th><th>Uploaded</th></tr></thead>
+    <tbody>
+    @foreach (var doc in Model)
+    {
+        <tr><td>@doc.FileName</td><td>@doc.GovernmentApplication?.ReferenceNumber</td><td>@doc.Status</td><td>@doc.UploadedAt.ToShortDateString()</td></tr>
+    }
+    </tbody>
+</table>
+<form method="post" asp-action="Upload" enctype="multipart/form-data" class="card p-3">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label class="form-label" for="applicationId">Application Id</label>
+        <input class="form-control" type="number" id="applicationId" name="applicationId" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="file">Document</label>
+        <input class="form-control" type="file" id="file" name="file" required />
+    </div>
+    <button class="btn btn-primary" type="submit">Upload</button>
+</form>

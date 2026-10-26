@@ -1,0 +1,22 @@
+@model List<Service>
+@{
+    ViewData["Title"] = "Government Services";
+}
+<h1>Government services</h1>
+<form method="get" class="row g-2 mb-3" role="search">
+    <div class="col-md-10"><input class="form-control" name="search" value="@ViewBag.Search" placeholder="Search services" /></div>
+    <div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Filter</button></div>
+</form>
+<div class="row g-3">
+@foreach (var service in Model)
+{
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100"><div class="card-body">
+            <h2 class="h5">@service.Title</h2>
+            <p>@service.Description</p>
+            <p><small>Fee: €@service.Fee · ETA: @service.EstimatedDays days</small></p>
+            <a class="btn btn-outline-primary" asp-action="ServiceDetails" asp-route-id="@service.Id">Details</a>
+        </div></div>
+    </div>
+}
+</div>

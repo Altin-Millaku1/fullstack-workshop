@@ -1,0 +1,40 @@
+@model List<Payment>
+@{ ViewData["Title"] = "Payments"; var apps = ViewBag.Applications as List<GovernmentApplication> ?? []; }
+<h1>Payments</h1>
+<form method="post" asp-action="Pay" class="card p-3 mb-4">
+    @Html.AntiForgeryToken()
+    <label class="form-label" for="applicationId">Choose application</label>
+    <div class="row g-2">
+        <div class="col-md-9">
+            <select class="form-select" id="applicationId" name="applicationId" required>
+                <option value="">Select</option>
+                @foreach (var app in apps)
+                {
+                    <option value="@app.Id">@app.ReferenceNumber - @app.Service?.Title</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3"><button class="btn btn-primary w-100" type="submit">Pay (Sandbox)</button></div>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead><tr><th>Reference</th><th>Amount</th><th>Status</th><th>Date</th><th>Receipt</th></tr></thead>
+    <tbody>
+    @foreach (var payment in Model)
+    {
+        <tr>
+            <td>@payment.ProviderReference</td>
+            <td>@payment.Amount @payment.Currency</td>
+            <td>@payment.Status</td>
+            <td>@payment.CreatedAt.ToShortDateString()</td>
+            <td>
+                @if (payment.Status == PaymentStatus.Completed)
+                {
+                    <a class="btn btn-sm btn-outline-primary" asp-action="Receipt" asp-route-id="@payment.Id">PDF</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

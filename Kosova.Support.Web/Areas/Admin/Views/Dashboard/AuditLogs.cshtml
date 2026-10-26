@@ -1,0 +1,3 @@
+@model List<AuditLog>
+<h1>Audit logs</h1>
+<table class="table table-sm table-striped"><thead><tr><th>When</th><th>Action</th><th>Entity</th><th>User</th></tr></thead><tbody>@foreach(var log in Model){<tr><td>@log.CreatedAt</td><td>@log.Action</td><td>@log.EntityName:@log.EntityId</td><td>@log.UserId</td></tr>}</tbody></table>

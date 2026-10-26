@@ -1,0 +1,3 @@
+@model List<FAQ>
+<h1>Manage FAQs</h1>
+<ul class="list-group">@foreach(var f in Model){<li class="list-group-item">@f.Question</li>}</ul>

@@ -1,0 +1,11 @@
+@model List<NewsArticle>
+@{ ViewData["Title"] = "News"; }
+<h1>News and announcements</h1>
+@foreach (var item in Model)
+{
+    <article class="card mb-3"><div class="card-body">
+        <h2 class="h5">@item.Title</h2>
+        <time datetime="@item.PublishedAt.ToString("O")">@item.PublishedAt.ToShortDateString()</time>
+        <p class="mt-2">@item.Content</p>
+    </div></article>
+}

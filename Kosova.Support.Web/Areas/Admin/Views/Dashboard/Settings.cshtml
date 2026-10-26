@@ -1,0 +1,3 @@
+@model List<SystemSetting>
+<h1>System settings</h1>
+<table class="table table-striped"><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody>@foreach(var s in Model){<tr><td>@s.Key</td><td>@s.Value</td></tr>}</tbody></table>

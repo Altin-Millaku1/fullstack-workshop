@@ -1,0 +1,8 @@
+@{ ViewData["Title"] = "System status"; }
+<h1>System status</h1>
+<div class="row g-3">
+    <div class="col-md-4"><div class="card p-3"><strong>Services</strong><span>@ViewBag.TotalServices</span></div></div>
+    <div class="col-md-4"><div class="card p-3"><strong>Active alerts</strong><span>@ViewBag.ActiveAlerts</span></div></div>
+    <div class="col-md-4"><div class="card p-3"><strong>Open support tickets</strong><span>@ViewBag.OpenTickets</span></div></div>
+</div>
+<p class="mt-3">Current system mode: Prototype / Demo.</p>

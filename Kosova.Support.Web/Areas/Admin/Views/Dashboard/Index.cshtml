@@ -1,0 +1,43 @@
+@{ ViewData["Title"] = "Admin dashboard"; var recent = ViewBag.RecentApplications as List<GovernmentApplication> ?? []; }
+<h1>Admin dashboard</h1>
+<div class="row g-3 mb-3">
+    <div class="col-md-2"><div class="card p-2">Users<br /><strong>@ViewBag.Users</strong></div></div>
+    <div class="col-md-2"><div class="card p-2">Applications<br /><strong>@ViewBag.Applications</strong></div></div>
+    <div class="col-md-2"><div class="card p-2">Pending<br /><strong>@ViewBag.PendingApplications</strong></div></div>
+    <div class="col-md-2"><div class="card p-2">Paid<br /><strong>@ViewBag.Payments</strong></div></div>
+    <div class="col-md-2"><div class="card p-2">Tickets<br /><strong>@ViewBag.SupportTickets</strong></div></div>
+</div>
+<nav class="mb-3">
+    <a class="btn btn-sm btn-outline-primary" asp-action="Users">Users</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Departments">Departments</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Services">Services</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Applications">Applications</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Appointments">Appointments</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Payments">Payments</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="News">News</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Events">Events</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="FAQs">FAQs</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Alerts">Alerts</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="AuditLogs">Audit logs</a>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Settings">Settings</a>
+</nav>
+
+<h2 class="h5">Recent applications</h2>
+<table class="table table-sm">
+<thead><tr><th>Ref</th><th>Service</th><th>Status</th><th>Actions</th></tr></thead>
+<tbody>
+@foreach (var app in recent)
+{
+    <tr>
+        <td>@app.ReferenceNumber</td>
+        <td>@app.Service?.Title</td>
+        <td>@app.Status</td>
+        <td>
+            <form asp-action="Approve" method="post" class="d-inline">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@app.Id" /><button class="btn btn-sm btn-success" type="submit">Approve</button></form>
+            <form asp-action="Reject" method="post" class="d-inline">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@app.Id" /><button class="btn btn-sm btn-danger" type="submit">Reject</button></form>
+            <form asp-action="RequestInfo" method="post" class="d-inline">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@app.Id" /><button class="btn btn-sm btn-warning" type="submit">Request info</button></form>
+        </td>
+    </tr>
+}
+</tbody>
+</table>

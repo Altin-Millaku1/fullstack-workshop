@@ -1,0 +1,78 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" data-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Kosova.Support</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">🛡️ Kosova.Support</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="GovernmentServices">@Localizer["Services"]</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="News">@Localizer["News"]</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact">@Localizer["Contact"]</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Dashboard" asp-action="Index">@Localizer["Dashboard"]</a></li>
+                    </ul>
+                    <form asp-controller="Localization" asp-action="SetLanguage" method="post" class="d-flex me-2">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+                        <select class="form-select form-select-sm" name="culture" onchange="this.form.submit()" aria-label="Language selector">
+                            <option value="sq" selected="@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "sq")">Shqip</option>
+                            <option value="en" selected="@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "en")">English</option>
+                            <option value="sr" selected="@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "sr")">Српски</option>
+                        </select>
+                    </form>
+                    <button id="theme-toggle" class="btn btn-outline-light btn-sm me-2" type="button" aria-label="Toggle dark mode">🌙</button>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content" class="container py-4">
+        @if (TempData["Success"] is string success)
+        {
+            <div class="alert alert-success" role="alert">@success</div>
+        }
+        @if (TempData["Error"] is string error)
+        {
+            <div class="alert alert-danger" role="alert">@error</div>
+        }
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted py-4">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <strong>Kosova.Support</strong><br />
+                    Prototype / Demonstration Website
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a asp-controller="Home" asp-action="Privacy">Privacy</a> ·
+                    <a asp-controller="Home" asp-action="Terms">Terms</a> ·
+                    <a asp-controller="Home" asp-action="Accessibility">Accessibility</a> ·
+                    <a asp-controller="Home" asp-action="SystemStatus">Status</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

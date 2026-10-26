@@ -1,0 +1,49 @@
+@model List<Appointment>
+@{ ViewData["Title"] = "Appointments"; var services = ViewBag.Services as List<Service> ?? []; }
+<h1>Appointments</h1>
+<form method="post" asp-action="Book" class="card p-3 mb-4">
+    @Html.AntiForgeryToken()
+    <div class="row g-2">
+        <div class="col-md-3">
+            <label class="form-label" for="ServiceId">Service</label>
+            <select class="form-select" id="ServiceId" name="ServiceId" required>
+                <option value="">Select</option>
+                @foreach (var s in services)
+                {
+                    <option value="@s.Id">@s.Title</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label" for="AppointmentTime">Date and time</label>
+            <input class="form-control" type="datetime-local" id="AppointmentTime" name="AppointmentTime" required />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label" for="Location">Location</label>
+            <input class="form-control" id="Location" name="Location" required />
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button class="btn btn-primary w-100" type="submit">Book</button>
+        </div>
+    </div>
+</form>
+<table class="table table-striped">
+    <thead><tr><th>Service</th><th>Date</th><th>Location</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Service?.Title</td>
+            <td>@item.AppointmentTime</td>
+            <td>@item.Location</td>
+            <td>@item.Status</td>
+            <td>
+                @if (item.Status == "Booked")
+                {
+                    <form method="post" asp-action="Cancel" class="d-inline">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@item.Id"/><button class="btn btn-sm btn-outline-danger" type="submit">Cancel</button></form>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,3 @@
+@model List<Appointment>
+<h1>Manage appointments</h1>
+<table class="table table-striped"><thead><tr><th>Service</th><th>Time</th><th>Status</th></tr></thead><tbody>@foreach(var a in Model){<tr><td>@a.Service?.Title</td><td>@a.AppointmentTime</td><td>@a.Status</td></tr>}</tbody></table>
